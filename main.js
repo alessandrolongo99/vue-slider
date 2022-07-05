@@ -27,3 +27,14 @@ const slides = [
 ];
 
 console.log(slides);
+
+const app = new Vue({
+    el: '#root',
+    data: {
+        index: 0,
+        array: slides,
+    },
+    methods: {
+
+    }
+});
