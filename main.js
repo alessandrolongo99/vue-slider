@@ -35,6 +35,17 @@ const app = new Vue({
         array: slides,
     },
     methods: {
-
+        prevSlide: function(){
+            this.index--;
+            if(this.index < 0){
+                this.index = this.array.length - 1;
+            }
+        },
+        nextSlide: function(){
+            this.index++;
+            if(this.index > this.array.length - 1){
+                this.index = 0;
+            }
+        }
     }
 });
