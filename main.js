@@ -33,19 +33,37 @@ const app = new Vue({
     data: {
         index: 0,
         array: slides,
+        autoPlay: null,
     },
     methods: {
-        prevSlide: function(){
+        prevSlide: function () {
             this.index--;
-            if(this.index < 0){
+            if (this.index < 0) {
                 this.index = this.array.length - 1;
             }
         },
-        nextSlide: function(){
+        nextSlide: function () {
             this.index++;
-            if(this.index > this.array.length - 1){
+            if (this.index > this.array.length - 1) {
                 this.index = 0;
             }
-        }
+        },
+        changeSlide: function (clickIndex) {
+            this.index = clickIndex;
+        },
+        startAutoPlay: function () {
+            if (this.autoPlay === null) {
+                this.autoPlay = setInterval(() => {
+                    this.nextSlide();
+                }, 2000);
+            }
+        },
+        stopAutoPlay: function () {
+            clearInterval(this.autoPlay);
+            this.autoPlay = null;
+        },
+    },
+    created() {
+        this.startAutoPlay();
     }
 });

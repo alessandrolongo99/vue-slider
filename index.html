@@ -16,7 +16,7 @@
     <div id="root">
 
         <div class="container">
-            <div class="slider-wrapper" tabindex="0">
+            <div class="slider-wrapper" tabindex="0" @mouseover="stopAutoPlay" @mouseleave="startAutoPlay">
 
                 <div class="item">
                     <img :src="array[index].image" :alt="array[index].title" />
@@ -31,20 +31,9 @@
                 <div class="thumbs">
                     <div @click="prevSlide" class="prev"></div>
                     <div @click="nextSlide" class="next"></div>
-                    <div class="thumb active">
-                        <img src="./img/01.jpg" alt="Svezia" />
-                    </div>
-                    <div class="thumb">
-                        <img src="./img/02.jpg" alt="Svizzera" />
-                    </div>
-                    <div class="thumb">
-                        <img src="./img/03.jpg" alt="Gran Bretagna" />
-                    </div>
-                    <div class="thumb">
-                        <img src="./img/04.jpg" alt="Germania" />
-                    </div>
-                    <div class="thumb">
-                        <img src="./img/05.jpg" alt="Paradise" />
+                    <div class="thumb" :class="(thumbIndex == index) ? 'active' : ''"
+                        v-for="(thumb, thumbIndex) in array" @click="changeSlide(thumbIndex)">
+                        <img :src="thumb.image" :alt="thumb.title" />
                     </div>
                 </div>
 
